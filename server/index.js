@@ -5,8 +5,9 @@ const connectDB = require("./config/connectDB");
 // const userRoutes = require("./routes/index.js");
 const router = require("./routes/index.js");
 const cookiesParser = require('cookie-parser')
+const {app, server} = require('./socket/index.js')
 
-const app = express();
+// const app = express();
 app.use(
   cors({
     origin: process.env.FRONTEND_URL,
@@ -29,7 +30,7 @@ app.get("/", (req, res) => {
 app.use('/api',router)
 
 connectDB().then(() => {
-  app.listen(PORT, () => {
+  server.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`);
   });
 });
