@@ -1,5 +1,4 @@
 const express = require("express");
-const mongoose = require("mongoose");
 const { Server } = require("socket.io");
 const http = require("http");
 const getUserDetailsFromToken = require("../helpers/getUserDetailsFromToken");
