@@ -23,7 +23,7 @@ const Sidebar = () => {
   );
 
   useEffect(() => {
-    if (socketConnection) {
+    if (socketConnection && user?._id) {
       socketConnection.emit("sidebar", user._id);
       socketConnection.on("conversation", (data) => {
         if (Array.isArray(data)) {
@@ -84,15 +84,15 @@ const Sidebar = () => {
             <FaUserPlus size={20} />
           </div>
         </div>
-        <div className="flex flex-col items-center">
+        <div className="flex flex-col items-center gap-2">
           <button
-            className="mx-auto"
+            className="mx-auto my-auto"
             title={user?.name}
             onClick={() => setEditUserOpen(true)}
           >
             <Avatar
-              width={37}
-              height={37}
+              width={30}
+              height={30}
               name={user?.name}
               imageUrl={user?.profile_pic}
               userId={user?._id}
@@ -133,7 +133,7 @@ const Sidebar = () => {
                 key={conv?._id}
                 className="flex items-center gap-4 py-3 px-2 border border-transparent hover:border-primary rounded hover:bg-slate-100 cursor-pointer"
               >
-                <div>
+                <div className="h-fit py-1">
                   <Avatar
                     imageUrl={conv?.userDetails?.profile_pic}
                     name={conv?.userDetails?.name}

@@ -42,7 +42,7 @@ const Avatar = ({ userId, name, imageUrl, width, height }) => {
           alt={name}
           width={width}
           height={height}
-          className="overflow-hidden rounded-full"
+          className="overflow-hidden lg:max-h-14 rounded-full"
         />
       ) : name ? (
         <div
