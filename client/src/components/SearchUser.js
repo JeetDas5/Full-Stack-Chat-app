@@ -25,7 +25,7 @@ const SearchUser = ({ onClose }) => {
 
   useEffect(() => {
     handleSearchUser();
-  }, [search]);
+  });
 
   return (
     <div className="fixed top-0 bottom-0 left-0 right-0 bg-slate-700 bg-opacity-40 p-2 z-10">
@@ -52,9 +52,9 @@ const SearchUser = ({ onClose }) => {
           )}
 
           {loading && (
-            <p>
+            <div className="flex justify-center items-center">
               <Loading />
-            </p>
+            </div>
           )}
 
           {searchUser.length !== 0 &&

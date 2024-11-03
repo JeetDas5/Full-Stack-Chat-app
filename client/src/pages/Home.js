@@ -11,7 +11,7 @@ import {
 import Sidebar from "../components/Sidebar";
 import logo from "../assets/logo.png";
 import io from "socket.io-client";
-import taost from "react-hot-toast";
+import toast from "react-hot-toast";
 
 const Home = () => {
   const user = useSelector((state) => state.user);
@@ -34,14 +34,16 @@ const Home = () => {
         dispatch(logout());
         navigate("/email");
       }
+      console.log("current user Details", response);
     } catch (error) {
-      taost.error(error);
+      toast.error(error)
+      console.log("error", error);
     }
   };
 
   useEffect(() => {
     fetchUserDetails();
-  }, []);
+  });
 
   /***socket connection */
   useEffect(() => {
@@ -52,6 +54,7 @@ const Home = () => {
     });
 
     socketConnection.on("onlineUser", (data) => {
+      console.log(data);
       dispatch(setOnlineUser(data));
     });
 
@@ -60,7 +63,7 @@ const Home = () => {
     return () => {
       socketConnection.disconnect();
     };
-  }, []);
+  }, [dispatch]);
 
   const basePath = location.pathname === "/";
   return (

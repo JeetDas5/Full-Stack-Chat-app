@@ -94,10 +94,10 @@ const MessagePage = () => {
 
       socketConnection.on("message-user", (data) => {
         setDataUser(data);
-        console.log("message user: ", data);
+        // console.log("message user: ", data);
       });
       socketConnection.on("message", (data) => {
-        console.log("message data", data);
+        // console.log("message data", data);
         setAllMessage(data);
       });
     }
