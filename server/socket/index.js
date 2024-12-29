@@ -12,11 +12,14 @@ const getConversation = require("../helpers/getConversation");
 const app = express();
 
 // Socket connection
+
+// console.log("FRONTEND_URL", process.env.REACT_APP_FRONTEND_URL_PROD);
+
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: process.env.FRONTEND_URL || "http://localhost:3000", // Fallback for local development
-    credentials: true, // Allow credentials like cookies and headers
+    origin: "http://localhost:3000" || "https://full-stack-chat-app-frontend.onrender.com",
+    credentials: true, 
   },
 });
 
