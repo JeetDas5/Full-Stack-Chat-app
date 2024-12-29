@@ -18,8 +18,11 @@ const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000" || "https://full-stack-chat-app-frontend.onrender.com",
-    credentials: true, 
+    origin: [
+      "http://localhost:3000", // Local frontend
+      "https://full-stack-chat-app-frontend.onrender.com", // Deployed frontend
+    ],
+    credentials: true, // Allow credentials like cookies and headers
   },
 });
 
