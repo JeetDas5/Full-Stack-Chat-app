@@ -7,13 +7,25 @@ const router = require("./routes/index.js");
 const cookiesParser = require('cookie-parser')
 const {app, server} = require('./socket/index.js')
 
+const allowedOrigins = [
+  'http://localhost:3000', // For local development
+  'https://full-stack-chat-app-frontend.onrender.com', // For deployed frontend
+];
+
 // const app = express();
 app.use(
   cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true,
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true, // Allow cookies and authentication headers
   })
 );
+console.log(process.env.FRONTEND_URL);
 
 app.use(express.json())
 app.use(cookiesParser())
