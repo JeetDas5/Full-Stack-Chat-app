@@ -11,7 +11,13 @@ const SearchUser = ({ onClose }) => {
   const [search, setSearch] = useState("");
 
   const handleSearchUser = async () => {
-    const URL = `${process.env.REACT_APP_BACKEND_URL}/api/search-user`;
+    console.log(process.env.NODE_ENV);
+    console.log(process.env.REACT_APP_BACKEND_URL_PROD);
+
+    const URL = `${process.env.NODE_ENV === 'development' ? process.env.REACT_APP_BACKEND_URL : process.env.REACT_APP_BACKEND_URL_PROD}/api/search-user`;
+
+    
+    // const URL = `${process.env.REACT_APP_BACKEND_URL}/api/search-user`;
     try {
       setLoading(true);
       const response = await axios.post(URL, { search });
@@ -25,7 +31,7 @@ const SearchUser = ({ onClose }) => {
 
   useEffect(() => {
     handleSearchUser();
-  });
+  },[]);
 
   return (
     <div className="fixed top-0 bottom-0 left-0 right-0 bg-slate-700 bg-opacity-40 p-2 z-10">
